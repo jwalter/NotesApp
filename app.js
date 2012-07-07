@@ -5,7 +5,8 @@ Ext.application({
         'Ext.MessageBox'
     ],
 
-    views: ['Main'],
+    controllers: ['Notes'],
+    views: ['NotesListContainer'],
 
     icon: {
         '57': 'resources/icons/Icon.png',
@@ -30,8 +31,8 @@ Ext.application({
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
 
-        // Initialize the main view
-        Ext.Viewport.add(Ext.create('NotesApp.view.Main'));
+        var notesListContainer = Ext.create('NotesApp.view.NotesListContainer');
+        Ext.Viewport.add(notesListContainer);
     },
 
     onUpdated: function() {
