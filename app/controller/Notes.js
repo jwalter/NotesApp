@@ -2,23 +2,28 @@ Ext.define('NotesApp.controller.Notes', {
     extend: 'Ext.app.Controller',
     config: {
         refs: {
-            newNoteBtn: '#new-note-btn'
+            notestListContainer: 'notesListContainer'
         },
         control: {
-            newNoteBtn: {
-                tap: 'onNewNote'
+            notesListContainer: {
+                newNoteCommand: 'onNewNoteCommand',
+                editNoteCommand: 'onEditNoteCommand'
             }
         }
     },
-    onNewNote: function() {
-        console.log('onNewNote');
+    onNewNoteCommand: function() {
+        console.log('onNewNoteCommand');
+    },
+    onEditNoteCommand: function() {
+        console.log('onEditNoteCommand');
     },
     launch: function() {
-        this.callParent();
+        this.callParent(arguments);
+        Ext.getStore('Notes').load();
         console.log('notes launch');
     },
     init: function() {
-        this.callParent();
+        this.callParent(arguments);
         console.log('notes init');
     }
 });

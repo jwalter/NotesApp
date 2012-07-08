@@ -6,7 +6,7 @@ Ext.application({
     ],
 
     controllers: ['Notes'],
-    views: ['NotesListContainer'],
+    views: ['NotesList', 'NotesListContainer'],
 
     icon: {
         '57': 'resources/icons/Icon.png',
@@ -31,7 +31,9 @@ Ext.application({
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
 
-        var notesListContainer = Ext.create('NotesApp.view.NotesListContainer');
+        var notesListContainer = {
+            xtype: 'noteslistcontainer'
+        };
         Ext.Viewport.add(notesListContainer);
     },
 
