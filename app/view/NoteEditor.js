@@ -33,6 +33,7 @@ Ext.define('NotesApp.view.NoteEditor', {
             xtype: 'button',
             iconCls: 'trash',
             iconMask: true,
+            handler: this.onDeleteButtonTap,
             scope: this
         };
         var bottomToolbar = {
@@ -65,5 +66,9 @@ Ext.define('NotesApp.view.NoteEditor', {
     onSaveButtonTap: function() {
         console.log('view.NoteEditor:onSaveButtonTap');
         this.fireEvent('saveNoteCommand', this);
+    },
+    onDeleteButtonTap: function() {
+        console.log('view.NoteEditor:onDeleteButtonTap');
+        this.fireEvent('deleteNoteCommand', this);
     }
 });

@@ -11,7 +11,8 @@ Ext.define('NotesApp.controller.Notes', {
                 editNoteCommand: 'onEditNoteCommand'
             },
             noteEditor: {
-                saveNoteCommand: 'onSaveNoteCommand'
+                saveNoteCommand: 'onSaveNoteCommand',
+                deleteNoteCommand: 'onDeleteNoteCommand'
             }
         }
     },
@@ -52,6 +53,17 @@ Ext.define('NotesApp.controller.Notes', {
         }
         notesStore.sync();
         notesStore.sort([{property: 'dateCreated', direction: 'DESC'}]);
+        this.activateNotesList();
+    },
+    onDeleteNoteCommand:function() {
+        console.log('controller.Notes:onDeleteNoteCommand');
+        var noteEditor = this.getNoteEditor();
+        var currentNote = noteEditor.getRecord();
+        var notesStore = Ext.getStore('Notes');
+
+        notesStore.remove(currentNote);
+        notesStore.sync();
+
         this.activateNotesList();
     },
     launch: function() {
