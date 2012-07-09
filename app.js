@@ -6,7 +6,7 @@ Ext.application({
     ],
 
     controllers: ['Notes'],
-    views: ['NotesList', 'NotesListContainer', 'NoteEditor'],
+    views: ['NotesList', 'NoteEditor'],
     models: ['Note'],
     stores: ['Notes'],
 
@@ -33,13 +33,13 @@ Ext.application({
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
 
-        var notesListContainer = {
-            xtype: 'noteslistcontainer'
+        var notesListView = {
+            xtype: 'noteslistview'
         };
-        var noteEditor = {
-            xtype: 'noteeditor'
+        var noteEditorView = {
+            xtype: 'noteeditorview'
         };
-        Ext.Viewport.add([notesListContainer, noteEditor]);
+        Ext.Viewport.add([notesListView, noteEditorView]);
     },
 
     onUpdated: function() {

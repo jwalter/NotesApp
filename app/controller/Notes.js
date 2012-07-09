@@ -2,15 +2,16 @@ Ext.define('NotesApp.controller.Notes', {
     extend: 'Ext.app.Controller',
     config: {
         refs: {
-            notesListContainer: 'noteslistcontainer',
-            noteEditor: 'noteeditor'
+            notesListView: 'noteslistview',
+            noteEditorView: 'noteeditorview',
+            notesList: '#notesList'
         },
         control: {
-            notesListContainer: {
+            notesListView: {
                 newNoteCommand: 'onNewNoteCommand',
                 editNoteCommand: 'onEditNoteCommand'
             },
-            noteEditor: {
+            noteEditorView: {
                 saveNoteCommand: 'onSaveNoteCommand',
                 deleteNoteCommand: 'onDeleteNoteCommand',
                 backToHomeCommand: 'onBackToHomeCommand'
@@ -35,7 +36,7 @@ Ext.define('NotesApp.controller.Notes', {
     },
     onSaveNoteCommand: function() {
         console.log('controller.Notes:onSaveNoteCommand');
-        var noteEditor = this.getNoteEditor();
+        var noteEditor = this.getNoteEditorView();
         var currentNote = noteEditor.getRecord();
         var newValues = noteEditor.getValues();
         currentNote.set('title', newValues.title);
@@ -58,7 +59,7 @@ Ext.define('NotesApp.controller.Notes', {
     },
     onDeleteNoteCommand:function() {
         console.log('controller.Notes:onDeleteNoteCommand');
-        var noteEditor = this.getNoteEditor();
+        var noteEditor = this.getNoteEditorView();
         var currentNote = noteEditor.getRecord();
         var notesStore = Ext.getStore('Notes');
 
@@ -84,13 +85,12 @@ Ext.define('NotesApp.controller.Notes', {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     },
     activateNoteEditor: function(record) {
-        var noteEditor = this.getNoteEditor();
-        noteEditor.setRecord(record);
-        Ext.Viewport.animateActiveItem(noteEditor, this.slideLeftTransition);
+        var noteEditorView = this.getNoteEditorView();
+        noteEditorView.setRecord(record);
+        Ext.Viewport.animateActiveItem(noteEditorView, this.slideLeftTransition);
     },
     activateNotesList: function() {
-        var notesListContainer = this.getNotesListContainer();
-        Ext.Viewport.animateActiveItem(notesListContainer, this.slideRightTransition);
+        Ext.Viewport.animateActiveItem(this.getNotesListView(), this.slideRightTransition);
     },
     slideLeftTransition: { type: 'slide', direction: 'left'},
     slideRightTransition: { type: 'slide', direction: 'right'}
