@@ -7,6 +7,8 @@ Ext.application({
 
     controllers: ['Notes'],
     views: ['NotesList', 'NotesListContainer'],
+    models: ['Note'],
+    stores: ['Notes'],
 
     icon: {
         '57': 'resources/icons/Icon.png',
