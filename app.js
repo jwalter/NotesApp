@@ -6,7 +6,7 @@ Ext.application({
     ],
 
     controllers: ['Notes'],
-    views: ['NotesList', 'NotesListContainer'],
+    views: ['NotesList', 'NotesListContainer', 'NoteEditor'],
     models: ['Note'],
     stores: ['Notes'],
 
@@ -36,7 +36,10 @@ Ext.application({
         var notesListContainer = {
             xtype: 'noteslistcontainer'
         };
-        Ext.Viewport.add(notesListContainer);
+        var noteEditor = {
+            xtype: 'noteeditor'
+        };
+        Ext.Viewport.add([notesListContainer, noteEditor]);
     },
 
     onUpdated: function() {
