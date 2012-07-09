@@ -12,7 +12,8 @@ Ext.define('NotesApp.controller.Notes', {
             },
             noteEditor: {
                 saveNoteCommand: 'onSaveNoteCommand',
-                deleteNoteCommand: 'onDeleteNoteCommand'
+                deleteNoteCommand: 'onDeleteNoteCommand',
+                backToHomeCommand: 'onBackToHomeCommand'
             }
         }
     },
@@ -64,6 +65,10 @@ Ext.define('NotesApp.controller.Notes', {
         notesStore.remove(currentNote);
         notesStore.sync();
 
+        this.activateNotesList();
+    },
+    onBackToHomeCommand: function() {
+        console.log('controller.Notes:onBackToHomeCommand');
         this.activateNotesList();
     },
     launch: function() {
